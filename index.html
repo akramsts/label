@@ -1,1 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>MRP Label Studio</title>
+<meta name="description" content="Create and print MRP labels, 24 per A4 sheet.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a6b5b'/%3E%3Cpath d='M9 11h9l5 5-5 5H9z' fill='none' stroke='%23fff' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-view="edit">
 
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+ <defs>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V4h10v5"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.2v.1"/></symbol>
+  <symbol id="i-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h6.6a2 2 0 011.4.6l7.4 7.4a2 2 0 010 2.8l-5.6 5.6a2 2 0 01-2.8 0L4.6 12.6A2 2 0 014 11.2z"/><circle cx="8" cy="8" r="1.3"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 20V8l6-3v15M10 20V10l10 3v7M3 20h18"/><path d="M7 11v.1M7 14v.1M14 15v.1M17 16v.1"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.3a11 11 0 005.7 5.7l1.3-2 4 1.5v3a2 2 0 01-2.2 2A16 16 0 014.5 5.7a2 2 0 012-2.2z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18c1.4 0 2-.9 2-1.8 0-1.2-1-1.5-1-2.7 0-1 .8-1.7 1.9-1.7H17a4 4 0 004-4c0-4.2-4-7.8-9-7.8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M12 3v18"/></symbol>
+  <symbol id="i-label" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h6M7 14h10"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.1"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20l1-4L16.5 4.5a2 2 0 012.8 0l.2.2a2 2 0 010 2.8L8 19z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+ </defs>
+</svg>
+
+<div id="app">
+<header class="topbar">
+ <div class="topbar-inner">
+  <div class="brand">
+   <div class="logo"><svg class="ic"><use href="#i-tag"/></svg></div>
+   <div><h1>MRP Label Studio</h1><p>63.5 &times; 33.87 mm labels, 24 on an A4 sheet</p></div>
+  </div>
+  <div class="save-state" id="saveState"><svg class="ic"><use href="#i-check-circle"/></svg><span>Draft saved on this device</span></div>
+ </div>
+</header>
+
+<main class="shell">
+ <noscript><p>This tool needs JavaScript to run.</p></noscript>
+ <div class="workspace">
+
+  <div class="form-col">
+   <div class="toolbar">
+    <div class="progress">
+     <p class="progress-text" id="progText">0 of 4 required details complete</p>
+     <div class="bar"><i id="progBar"></i></div>
+    </div>
+    <div class="tools">
+     <button class="btn btn-ghost" type="button" id="example"><svg class="ic"><use href="#i-file"/></svg>Load sample</button>
+     <button class="btn btn-ghost" type="button" id="clear"><svg class="ic"><use href="#i-trash"/></svg>Clear all</button>
+    </div>
+   </div>
+
+   <details class="card" open>
+    <summary>
+     <span class="card-ic"><svg class="ic"><use href="#i-package"/></svg></span>
+     <span class="card-title"><strong>Product details</strong><span>Name, price, quantity and size</span></span>
+     <svg class="ic chev"><use href="#i-chevron"/></svg>
+    </summary>
+    <div class="card-body">
+     <div class="field">
+      <div class="lbl"><label for="brand">Brand name</label></div>
+      <input id="brand" type="text" maxlength="35" autocomplete="off" placeholder="e.g. KNIT VINCH">
+     </div>
+     <div class="field">
+      <div class="lbl"><label for="product">Product name</label><span class="req">Required</span></div>
+      <input id="product" type="text" maxlength="100" autocomplete="off" placeholder="e.g. Men's Regular Fit T-Shirt" aria-describedby="err-product">
+      <p class="err" id="err-product" role="alert" hidden></p>
+     </div>
+     <div class="grid2">
+      <div class="field">
+       <div class="lbl"><label for="mrp">MRP in rupees</label><span class="req">Required</span></div>
+       <input id="mrp" type="text" inputmode="decimal" maxlength="12" autocomplete="off" placeholder="599.00" aria-describedby="help-mrp err-mrp">
+       <p class="help" id="help-mrp">Price including all taxes.</p>
+       <p class="err" id="err-mrp" role="alert" hidden></p>
+      </div>
+      <div class="field">
+       <div class="lbl"><label for="qty">Net quantity</label><span class="req">Required</span></div>
+       <input id="qty" type="text" maxlength="30" autocomplete="off" placeholder="1 N" aria-describedby="help-qty err-qty">
+       <p class="help" id="help-qty">For example 1 N, 250 g or 500 ml.</p>
+       <p class="err" id="err-qty" role="alert" hidden></p>
+      </div>
+     </div>
+     <div class="grid2">
+      <div class="field">
+       <div class="lbl"><label for="size">Size</label></div>
+       <input id="size" type="text" maxlength="30" autocomplete="off" placeholder="M or 40">
+      </div>
+      <div class="field">
+       <div class="lbl"><label for="productColor">Product colour</label></div>
+       <select id="productColor">
+        <option value="">Do not print colour</option>
+        <option>Black</option><option>White</option><option>Navy Blue</option><option>Olive Green</option><option>Maroon</option><option>Grey</option><option>Beige</option><option>Other / Assorted</option>
+       </select>
+      </div>
+     </div>
+     <div class="grid2">
+      <div class="field">
+       <div class="lbl"><label for="batch">Batch or lot number</label></div>
+       <input id="batch" type="text" maxlength="40" autocomplete="off" placeholder="KV001">
+      </div>
+      <div class="field">
+       <div class="lbl"><label for="mfg">Month and year of manufacture</label></div>
+       <input id="mfg" type="text" maxlength="20" autocomplete="off" placeholder="03/2026">
+      </div>
+     </div>
+     <div class="grid2">
+      <div class="field">
+       <div class="lbl"><label for="unit">Unit sale price</label></div>
+       <input id="unit" type="text" maxlength="30" autocomplete="off" placeholder="Rs 599 per piece">
+      </div>
+      <div class="field">
+       <div class="lbl"><label for="origin">Country of origin</label></div>
+       <input id="origin" type="text" maxlength="50" autocomplete="off">
+      </div>
+     </div>
+     <div class="field">
+      <div class="lbl"><label for="extra">Usage or care instructions</label></div>
+      <input id="extra" type="text" maxlength="100" autocomplete="off" placeholder="e.g. Wash separately">
+     </div>
+    </div>
+   </details>
+
+   <details class="card" open>
+    <summary>
+     <span class="card-ic"><svg class="ic"><use href="#i-building"/></svg></span>
+     <span class="card-title"><strong>Manufacturer and seller</strong><span>Who made, packed and sells the product</span></span>
+     <svg class="ic chev"><use href="#i-chevron"/></svg>
+    </summary>
+    <div class="card-body">
+     <div class="field">
+      <div class="lbl"><label for="manufacturer">Manufactured by</label><span class="req">Required</span></div>
+      <textarea id="manufacturer" maxlength="250" placeholder="Name and full address" aria-describedby="err-manufacturer"></textarea>
+      <p class="err" id="err-manufacturer" role="alert" hidden></p>
+     </div>
+     <div class="field">
+      <div class="lbl"><label for="packed">Packed by</label></div>
+      <textarea id="packed" maxlength="250" placeholder="Name and full address, if different"></textarea>
+     </div>
+     <div class="field">
+      <div class="lbl"><label for="marketed">Marketed by</label></div>
+      <textarea id="marketed" maxlength="250" placeholder="Name and full address, if different"></textarea>
+     </div>
+    </div>
+   </details>
+
+   <details class="card" open>
+    <summary>
+     <span class="card-ic"><svg class="ic"><use href="#i-phone"/></svg></span>
+     <span class="card-title"><strong>Customer care</strong><span>How buyers can reach you</span></span>
+     <svg class="ic chev"><use href="#i-chevron"/></svg>
+    </summary>
+    <div class="card-body">
+     <div class="field">
+      <div class="lbl"><label for="care">Name or address</label></div>
+      <textarea id="care" maxlength="250" placeholder="Name and address of customer care"></textarea>
+     </div>
+     <div class="grid2">
+      <div class="field">
+       <div class="lbl"><label for="phone">Phone</label></div>
+       <input id="phone" type="tel" inputmode="tel" maxlength="25" autocomplete="off" placeholder="+91 98765 43210" aria-describedby="err-phone">
+       <p class="err" id="err-phone" role="alert" hidden></p>
+      </div>
+      <div class="field">
+       <div class="lbl"><label for="email">Email</label></div>
+       <input id="email" type="email" maxlength="80" autocomplete="off" placeholder="care@example.com" aria-describedby="err-email">
+       <p class="err" id="err-email" role="alert" hidden></p>
+      </div>
+     </div>
+    </div>
+   </details>
+
+   <details class="card" open>
+    <summary>
+     <span class="card-ic"><svg class="ic"><use href="#i-palette"/></svg></span>
+     <span class="card-title"><strong>Label colours</strong><span>Background, text and accent</span></span>
+     <svg class="ic chev"><use href="#i-chevron"/></svg>
+    </summary>
+    <div class="card-body">
+     <div class="color-row"><span class="color-name" id="n-bg">Background</span><div class="swatches" id="bgPalette" role="radiogroup" aria-labelledby="n-bg"></div></div>
+     <div class="color-row"><span class="color-name" id="n-ink">Text</span><div class="swatches" id="textPalette" role="radiogroup" aria-labelledby="n-ink"></div></div>
+     <div class="color-row"><span class="color-name" id="n-accent">Brand and divider</span><div class="swatches" id="accentPalette" role="radiogroup" aria-labelledby="n-accent"></div></div>
+    </div>
+   </details>
+
+   <details class="card" open>
+    <summary>
+     <span class="card-ic"><svg class="ic"><use href="#i-sliders"/></svg></span>
+     <span class="card-title"><strong>Print layout</strong><span>How many labels and where to start</span></span>
+     <svg class="ic chev"><use href="#i-chevron"/></svg>
+    </summary>
+    <div class="card-body">
+     <div class="grid2">
+      <div class="field">
+       <div class="lbl"><label for="count">Labels to print</label></div>
+       <div class="stepper">
+        <button class="step-btn" type="button" data-step="-1" data-for="count" aria-label="One label fewer"><svg class="ic"><use href="#i-minus"/></svg></button>
+        <input id="count" type="number" inputmode="numeric" min="1" max="24" value="24">
+        <button class="step-btn" type="button" data-step="1" data-for="count" aria-label="One label more"><svg class="ic"><use href="#i-plus"/></svg></button>
+       </div>
+      </div>
+      <div class="field">
+       <div class="lbl"><label for="start">Start from position</label></div>
+       <div class="stepper">
+        <button class="step-btn" type="button" data-step="-1" data-for="start" aria-label="Previous position"><svg class="ic"><use href="#i-minus"/></svg></button>
+        <input id="start" type="number" inputmode="numeric" min="1" max="24" value="1">
+        <button class="step-btn" type="button" data-step="1" data-for="start" aria-label="Next position"><svg class="ic"><use href="#i-plus"/></svg></button>
+       </div>
+      </div>
+     </div>
+     <div class="field field-tight">
+      <div class="chips-row" role="group" aria-label="Quick label counts">
+       <button class="chip-btn" type="button" data-count="24" data-full="1">Full sheet</button>
+       <button class="chip-btn" type="button" data-count="12">12</button>
+       <button class="chip-btn" type="button" data-count="6">6</button>
+       <button class="chip-btn" type="button" data-count="1">1</button>
+      </div>
+      <p class="help" id="printHint"></p>
+      <p class="help">Reusing a partly used sticker sheet? Set the position of the first free sticker, or click it on the A4 preview.</p>
+     </div>
+     <label class="switch"><input type="checkbox" id="outline" role="switch"><span class="track"><span class="thumb"></span></span><span>Print thin cut outlines around each label</span></label>
+    </div>
+   </details>
+  </div>
+
+  <section class="preview-panel" aria-label="Preview">
+   <div class="panel-head">
+    <div class="tabs" role="tablist" aria-label="Preview type">
+     <button class="tab" role="tab" id="tab-single" aria-controls="panel-single" aria-selected="true" type="button"><svg class="ic"><use href="#i-label"/></svg>Single label</button>
+     <button class="tab" role="tab" id="tab-sheet" aria-controls="panel-sheet" aria-selected="false" tabindex="-1" type="button"><svg class="ic"><use href="#i-sheet"/></svg>A4 sheet</button>
+    </div>
+   </div>
+
+   <div class="pane" id="panel-single" role="tabpanel" aria-labelledby="tab-single">
+    <div class="stage" id="stageSingle">
+     <div class="dim-frame">
+      <svg class="dim dim-h" aria-hidden="true"><line x1="0" y1="12" x2="100%" y2="12"/><line x1="0" y1="5" x2="0" y2="19"/><line x1="100%" y1="5" x2="100%" y2="19"/><text x="50%" y="12" text-anchor="middle" dominant-baseline="central">63.5 mm</text></svg>
+      <svg class="dim dim-v" aria-hidden="true"><line x1="15" y1="0" x2="15" y2="100%"/><line x1="8" y1="0" x2="22" y2="0"/><line x1="8" y1="100%" x2="22" y2="100%"/><svg y="50%" width="1" height="1" overflow="visible"><text transform="translate(15 0) rotate(-90)" text-anchor="middle" dominant-baseline="central">33.87 mm</text></svg></svg>
+      <div class="scale-box" id="singleBox"><div class="scale-inner" id="singleInner"><div class="cell single" id="singleCell"></div></div></div>
+     </div>
+    </div>
+    <p class="caption" id="zoomNote"></p>
+   </div>
+
+   <div class="pane" id="panel-sheet" role="tabpanel" aria-labelledby="tab-sheet" hidden>
+    <div class="stage" id="stageSheet">
+     <div class="scale-box" id="sheetBox"><div class="scale-inner" id="sheetInner"><div class="sheet screen" id="sheetScreen"></div></div></div>
+    </div>
+    <p class="caption" id="sheetNote"></p>
+   </div>
+
+   <div class="preview-foot">
+    <ul class="chips" id="chips" aria-label="Print checks"></ul>
+    <p class="status-msg ok" id="statusMsg"><svg class="ic"><use href="#i-check-circle"/></svg><span></span></p>
+    <div class="foot-actions">
+     <button class="btn btn-primary" type="button" id="printBtn"><svg class="ic"><use href="#i-print"/></svg>Print or save as PDF</button>
+     <button class="btn btn-outline" type="button" id="tipsBtn"><svg class="ic"><use href="#i-info"/></svg>Print tips</button>
+    </div>
+   </div>
+  </section>
+ </div>
+</main>
+
+<nav class="mobile-bar" aria-label="Switch view">
+ <button class="mb" type="button" data-view="edit" aria-pressed="true"><svg class="ic"><use href="#i-edit"/></svg>Edit</button>
+ <button class="mb" type="button" data-view="preview" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg>Preview</button>
+ <button class="btn btn-primary" type="button" id="printBtnM"><svg class="ic"><use href="#i-print"/></svg>Print</button>
+</nav>
+</div>
+
+<div class="measure" id="measureWrap" aria-hidden="true"><div class="cell" id="measure"></div></div>
+<div id="printArea"><div class="sheet" id="sheetPrint"></div></div>
+
+<dialog id="printDialog" aria-labelledby="dlgTitle">
+ <div class="dlg-body">
+  <h2 id="dlgTitle">Before you print</h2>
+  <p>Use these settings in your browser's print window so every label lines up with the stickers.</p>
+  <ul class="dlg-list">
+   <li><svg class="ic"><use href="#i-check-circle"/></svg><span><b>Paper size: A4</b>Orientation: Portrait</span></li>
+   <li><svg class="ic"><use href="#i-check-circle"/></svg><span><b>Scale: 100% (Actual size)</b>Do not choose "Fit to page"</span></li>
+   <li><svg class="ic"><use href="#i-check-circle"/></svg><span><b>Margins: None, headers and footers: Off</b>This keeps the page clean at the edges</span></li>
+   <li><svg class="ic"><use href="#i-check-circle"/></svg><span><b>Want a PDF?</b>Choose "Save as PDF" as the destination</span></li>
+  </ul>
+  <label class="dlg-skip"><input type="checkbox" id="dlgSkip"> Do not show this again</label>
+  <div class="dlg-actions">
+   <button class="btn btn-outline" type="button" id="dlgCancel">Cancel</button>
+   <button class="btn btn-primary" type="button" id="dlgGo"><svg class="ic"><use href="#i-print"/></svg>Open print window</button>
+  </div>
+ </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js" defer></script>
+</body>
+  </html>
